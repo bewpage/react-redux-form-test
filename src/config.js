@@ -1,6 +1,6 @@
 
 const CONFIG = {
-            ROOT_URL: 'http://reduxblog.herokuapp.com/api',
+            ROOT_URL: 'https://reduxblog.herokuapp.com/api',
             API_KEY: 'key=bartek1234',
 };
 
