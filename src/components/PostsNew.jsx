@@ -18,6 +18,7 @@ class PostsNew extends Component{
             titleValid: false,
             categoriesValid: false,
             contentValid: false,
+            redirectAfterSubmit: false
         }
     }
 
@@ -73,28 +74,30 @@ class PostsNew extends Component{
     newPostSubmit = (event) => {
       event.preventDefault();
       const { title, categories, content } = this.state;
-      console.log('title: ', title);
-      console.log('categories: ', categories);
-      console.log('content: ', content);
+      // console.log('title: ', title);
+      // console.log('categories: ', categories);
+      // console.log('content: ', content);
       const newPostObject = {
           title,
           categories,
           content
       };
 
-      console.log('dataToServer', newPostObject);
-      this.props.sendNewPost(newPostObject);
+      // console.log('dataToServer', newPostObject);
+      this.props.sendNewPost(newPostObject, () => {
+          this.props.history.push('/');
+      });
 
         this.setState({
             title: '',
             categories: '',
-            content: ''
+            content: '',
+            redirectAfterSubmit: true
         });
+
     };
 
     render(){
-        // console.log('props in posts new', this.props);
-        // const textInputValidation = validate();
         return(
             <div>
                 <h5>New Post</h5>

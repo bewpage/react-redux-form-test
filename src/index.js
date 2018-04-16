@@ -7,6 +7,7 @@ import thunk from 'redux-thunk';
 import reducer from './reducers';
 
 import PostIndex from './components/PostIndex';
+import PostsShow from './components/PostsShow';
 import PostsNew from "./components/PostsNew";
 import NavBar from "./components/NavBar";
 import registerServiceWorker from './registerServiceWorker';
@@ -27,6 +28,7 @@ ReactDOM.render(
                 <div className='container'>
                     <Route exact path='/' component={PostIndex} />
                     <Route path='/posts/new' component={PostsNew} />
+                    <Route path='/post/:id' component={PostsShow}/>
                 </div>
             </div>
         </BrowserRouter>

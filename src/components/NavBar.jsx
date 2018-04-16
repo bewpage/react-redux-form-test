@@ -20,11 +20,10 @@ class NavBar extends Component{
         const { navCollapsed } = this.state;
         return(
             <div>
-                {/*colapse not working use react toggle function to change class*/}
                 <nav className='navbar navbar-expand-md navbar-light bg-light'>
                     <button className='navbar-toggler'
                             type='button'
-                            aria-expanded="fals"
+                            aria-expanded="false"
                             onClick={this._onToggleNav}
                     >
                         <span className='navbar-toggler-icon'></span>

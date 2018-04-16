@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-// import { bindActionCreators } from 'redux';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { requestFetchPosts } from '../actions/action_fetch-posts'
-// import { isEmpty } from 'lodash';
+import { requestFetchPosts } from '../actions/action_fetch-posts';
+import { requestPost } from '../actions/action_fetch-post';
 
 import './PostIndex.css';
 
@@ -11,27 +11,27 @@ class PostIndex extends Component{
 
     componentDidMount(){
         this.props.requestFetchPosts();
-        console.log('hello-02', this.props);
-
+        // console.log('hello-02', this.props);
     }
 
     renderPosts(){
-        const posts = this.props.posts;
+        const { posts }  = this.props;
         return Object.keys(posts).map((keyName, keyIndex) => {
-            const { id, title, categories, content } = posts[keyName];
+            const { id, title, categories } = posts[keyName];
            // console.log('test in map', id);
-           // console.log('test in map', title);
+           // console.log('test in map', `${this.props.match.url}post/${id}`);
             return(
                 <li key={keyIndex}
                     className='list-group-item'
                 >
-                    <div className='remove-post'>
-                        <i className='remove-post-icon city-name-remove-icon fas fa-trash-alt'></i>
-                    </div>
                     <p>id: {id}</p>
-                    <p>title: {title}</p>
+                    <p>
+                        title:
+                        <Link to={`${this.props.match.url}post/${id}`}
+                              onClick={() => this.props.requestPost(id)}
+                        >{title}</Link>
+                    </p>
                     <p>categories: {categories}</p>
-                    <p>content: {content}</p>
                 </li>
             )
         });
@@ -70,4 +70,4 @@ const mapStateToProps = (state) => {
 // };
 
 
-export default connect(mapStateToProps, { requestFetchPosts })(PostIndex);
+export default connect(mapStateToProps, { requestFetchPosts, requestPost })(PostIndex);
